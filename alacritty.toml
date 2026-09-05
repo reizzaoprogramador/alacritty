@@ -1,0 +1,141 @@
+# @file: alacritty.toml
+# @mission: configuracao de aparencia, atalhos e integracao de clipboard do terminal Alacritty
+
+[shell]
+program = "/usr/bin/fish"
+args = ["--login"]
+
+[env]
+TERM = "xterm-256color"
+
+[window]
+dimensions = { columns = 120, lines = 35 }
+padding = { x = 6, y = 6 }
+dynamic_padding = true
+decorations = "full"
+opacity = 0.95
+blur = true
+startup_mode = "Windowed"
+title = "Alacritty"
+class = { instance = "Alacritty", general = "Alacritty" }
+
+[scrolling]
+history = 10000
+multiplier = 3
+
+[font]
+normal = { family = "JetBrainsMono Nerd Font", style = "Regular" }
+bold = { family = "JetBrainsMono Nerd Font", style = "Bold" }
+italic = { family = "JetBrainsMono Nerd Font", style = "Italic" }
+bold_italic = { family = "JetBrainsMono Nerd Font", style = "Bold Italic" }
+size = 11.0
+
+[colors.primary]
+background = "#1e1e2e"
+foreground = "#cdd6f4"
+
+[colors.normal]
+black   = "#45475a"
+red     = "#f38ba8"
+green   = "#a6e3a1"
+yellow  = "#f9e2af"
+blue    = "#89b4fa"
+magenta = "#f5c2e7"
+cyan    = "#94e2d5"
+white   = "#bac2de"
+
+[colors.bright]
+black   = "#585b70"
+red     = "#f38ba8"
+green   = "#a6e3a1"
+yellow  = "#f9e2af"
+blue    = "#89b4fa"
+magenta = "#f5c2e7"
+cyan    = "#94e2d5"
+white   = "#a6adc8"
+
+[cursor]
+style = { shape = "Block", blinking = "On" }
+vi_mode_style = { shape = "Underline", blinking = "Off" }
+blink_interval = 500
+
+[mouse]
+hide_when_typing = true
+
+# Sintaxe moderna do Alacritty para copiar a selecao do mouse para o clipboard
+[selection]
+save_to_clipboard = true
+
+# Atalhos com Ctrl+C (Copiar) e Ctrl+V (Colar)
+[[keyboard.bindings]]
+key = "V"
+mods = "Control"
+action = "Paste"
+
+[[keyboard.bindings]]
+key = "C"
+mods = "Control"
+action = "Copy"
+
+# Atalhos alternativos com Ctrl+Shift
+[[keyboard.bindings]]
+key = "V"
+mods = "Control|Shift"
+action = "Paste"
+
+[[keyboard.bindings]]
+key = "C"
+mods = "Control|Shift"
+action = "Copy"
+
+[[keyboard.bindings]]
+key = "Insert"
+mods = "Shift"
+action = "Paste"
+
+[[keyboard.bindings]]
+key = "Equals"
+mods = "Control"
+action = "IncreaseFontSize"
+
+[[keyboard.bindings]]
+key = "Minus"
+mods = "Control"
+action = "DecreaseFontSize"
+
+[[keyboard.bindings]]
+key = "Key0"
+mods = "Control"
+action = "ResetFontSize"
+
+[[keyboard.bindings]]
+key = "K"
+mods = "Control|Shift"
+action = "ScrollLineUp"
+
+[[keyboard.bindings]]
+key = "J"
+mods = "Control|Shift"
+action = "ScrollLineDown"
+
+# ==============================================================================
+# @README_FILE
+# ------------------------------------------------------------------------------
+# @leia_antes: antes de mudancas leia este #@README_FILE, não faça mudancas sem avisar, nem marretacoes sem a autorização do proprietário.
+#
+# @objetivo_file: padronizar interface visual e integracao automatica de selecao de mouse para clipboard no Alacritty
+# @requisitos_essenciais: Alacritty, fonte JetBrainsMono Nerd Font
+# @regras: manter save_to_clipboard ativo sob a secao [selection]
+# @erros_ocorridos: warning de chave nao reconhecida por conta de sintaxe antiga
+# @como_resolveu: reestruturacao da tabela [selection] no formato TOML moderno sem acoes obsoletas, para abrir em fish: shell = { program = "/usr/bin/fish" }
+# @diferencial_paea_funcionar: copia automatica de qualquer texto selecionado na tela sem precisar de combinacoes de teclas
+# @importante_nao_mudar: save_to_clipboard = true
+# @todo_temQueArrumar: nenhum
+# @EVITE: misturar sintaxe de versoes antigas do Alacritty
+# -- @CUIDADOS_ANT_LOOP:
+# 1. ESCOPO ESTRITAMENTE DECLARATIVO: pastas autocarregadas apenas declaram funcoes/variaveis.
+# 2. PROIBICAO DE RECURSAO ASCENDENTE: jamais invocar fonte ou loops de atualizacao dentro de scripts filhos.
+# 3. CARREGAMENTO SINCRONO NATIVO: priorizar verificacoes diretas de diretorio.
+# 4. ISOLAMENTO: manter scripts com efeito colateral fora do autoload padrao do shell.
+# @tags: #alacritty #toml #clipboard #mouse #config
+# ==============================================================================
