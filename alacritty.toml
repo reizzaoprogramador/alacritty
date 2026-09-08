@@ -31,24 +31,24 @@ background = "#1e1e2e"
 foreground = "#cdd6f4"
 
 [colors.normal]
-black   = "#45475a"
-red     = "#f38ba8"
-green   = "#a6e3a1"
-yellow  = "#f9e2af"
-blue    = "#89b4fa"
+black = "#45475a"
+red = "#f38ba8"
+green = "#a6e3a1"
+yellow = "#f9e2af"
+blue = "#89b4fa"
 magenta = "#f5c2e7"
-cyan    = "#94e2d5"
-white   = "#bac2de"
+cyan = "#94e2d5"
+white = "#bac2de"
 
 [colors.bright]
-black   = "#585b70"
-red     = "#f38ba8"
-green   = "#a6e3a1"
-yellow  = "#f9e2af"
-blue    = "#89b4fa"
+black = "#585b70"
+red = "#f38ba8"
+green = "#a6e3a1"
+yellow = "#f9e2af"
+blue = "#89b4fa"
 magenta = "#f5c2e7"
-cyan    = "#94e2d5"
-white   = "#a6adc8"
+cyan = "#94e2d5"
+white = "#a6adc8"
 
 [cursor]
 style = { shape = "Block", blinking = "On" }
@@ -56,13 +56,15 @@ vi_mode_style = { shape = "Underline", blinking = "Off" }
 blink_interval = 500
 
 [mouse]
+# Evita que o Alacritty capture cliques que pertencem ao Neovim
 hide_when_typing = true
 
-# Sintaxe moderna do Alacritty para copiar a selecao do mouse para o clipboard
 [selection]
+# Exige que você segure Shift para selecionar texto com o mouse no Alacritty, 
+# liberando cliques normais (como os do Oil.nvim) para dentro do Neovim
+semantic_escape_chars = ",│`|:\"' ()[]{}<>"
 save_to_clipboard = true
 
-# Atalhos com Ctrl+C (Copiar) e Ctrl+V (Colar)
 [[keyboard.bindings]]
 key = "V"
 mods = "Control"
@@ -73,7 +75,6 @@ key = "C"
 mods = "Control"
 action = "Copy"
 
-# Atalhos alternativos com Ctrl+Shift
 [[keyboard.bindings]]
 key = "V"
 mods = "Control|Shift"
@@ -113,25 +114,3 @@ action = "ScrollLineUp"
 key = "J"
 mods = "Control|Shift"
 action = "ScrollLineDown"
-
-# ==============================================================================
-# @README_FILE
-# ------------------------------------------------------------------------------
-# @leia_antes: antes de mudancas leia este #@README_FILE, não faça mudancas sem avisar, nem marretacoes sem a autorização do proprietário.
-#
-# @objetivo_file: padronizar interface visual e integracao automatica de selecao de mouse para clipboard no Alacritty
-# @requisitos_essenciais: Alacritty, fonte JetBrainsMono Nerd Font
-# @regras: manter save_to_clipboard ativo sob a secao [selection]
-# @erros_ocorridos: warning de chave nao reconhecida por conta de sintaxe antiga
-# @como_resolveu: reestruturacao da tabela [selection] no formato TOML moderno sem acoes obsoletas
-# @diferencial_paea_funcionar: copia automatica de qualquer texto selecionado na tela sem precisar de combinacoes de teclas
-# @importante_nao_mudar: save_to_clipboard = true
-# @todo_temQueArrumar: nenhum
-# @EVITE: misturar sintaxe de versoes antigas do Alacritty
-# -- @CUIDADOS_ANT_LOOP:
-# 1. ESCOPO ESTRITAMENTE DECLARATIVO: pastas autocarregadas apenas declaram funcoes/variaveis.
-# 2. PROIBICAO DE RECURSAO ASCENDENTE: jamais invocar fonte ou loops de atualizacao dentro de scripts filhos.
-# 3. CARREGAMENTO SINCRONO NATIVO: priorizar verificacoes diretas de diretorio.
-# 4. ISOLAMENTO: manter scripts com efeito colateral fora do autoload padrao do shell.
-# @tags: #alacritty #toml #clipboard #mouse #config
-# ==============================================================================
